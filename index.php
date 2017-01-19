@@ -1,12 +1,30 @@
 <?php
 
-$regex = "/ab/";
+$exercises = [
+    [
+        "regex" => "/ab/",
+        "goods" => ['abstrait', 'abcd', 'baba'],
+        "bads" => ['ba', 'azertyu', 'baaaaaaub'],
+        "statement" => ''
+    ]
+];
 
-$goodSujects = ['abstrait', 'abcd', 'baba'];
-$badSubjects = ['ba', 'azertyu', 'baaaaaaub'];
+function printExercises($exercises){
+    foreach($exercises as $id => $exercise){
+        printExercise($exercise["regex"], $exercise["goods"], $exercise["bads"], $exercise["statement"], $id + 1);
+    }
+}
+
+function printExercise($regex, $goods, $bads, $statement, $nb = 0){
+    echo "<h1>Exercice $nb : $statement</h1>";
+    echo "<h2>REGEX : $regex</h2>";
+    echo "<h3>Taille : " . strlen($regex) . " caractères</h3>";
+    printResult($regex, $goods);
+    printResult($regex, $bads, false);
+}
 
 function printResult($regex, $subjects, $flag = 1){
-    echo "<h3>" . ($flag ? "Bons" : "Mauvais") . " cas :</h3>";
+    echo "<h4>" . ($flag ? "Bons" : "Mauvais") . " cas :</h4>";
     echo "<table>";
     echo "<tr>";
     echo "<th>Chaîne de caractère</th>";
@@ -40,11 +58,7 @@ function printResult($regex, $subjects, $flag = 1){
     </style>
 </head>
 <body>
-    <h1>REGEX : <?= $regex ?></h1>
-    <h2>Taille : <?= strlen($regex) ?> caractères</h2>
-    <?php printResult($regex, $goodSujects) ?>
-    <?php printResult($regex, $badSubjects, false) ?>
-    
+    <?php printExercises($exercises) ?>
 </h1>
 </body>
 </html>
