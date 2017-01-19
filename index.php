@@ -21,8 +21,8 @@ $examples = [
     ],
     [
         "regex" => "/t.t./",
-        "goods" => ['', 'taratata', 'titi', 'toto', 'tata', 'tututututu', 'trtr', 'tttt'],
-        "bads" => ['toutou', 'azerty', 'tt', 'tit'],
+        "goods" => ['taratata', 'titi', 'toto', 'tata', 'tututututu', 'trtr', 'tttt'],
+        "bads" => ['toutou', 'azerty', 'tt', 'tit', ''],
         "statement" => 'Exemple'
     ],
     [
@@ -142,6 +142,24 @@ $exercises = [
         "goods" => ['AA-123-AA', 'AA-100-AA'],
         "bads" => ['AI-123-AI', 'AA-000-AA', '11-000-11'],
         "statement" => 'Une plaque d\'imatriculation.'
+    ],
+    [
+        "regex" => "/^[1-9]\d*$/",
+        "goods" => ['1', '23'],
+        "bads" => ['0', '3.14', '3,14'],
+        "statement" => 'Un entier naturel supérieur à 0.'
+    ],
+    [
+        "regex" => "/^([1-9]\d*|0)$/",
+        "goods" => ['1', '23', '0'],
+        "bads" => ['3.14', '3,14', '00001'],
+        "statement" => 'Un entier naturel supérieur ou égal à 0.'
+    ],
+    [
+        "regex" => "/^([+-]?(([1-9]\d*|0)[.,]\d?\d?[1-9]|[1-9]\d*)|0)$/",
+        "goods" => ['+0,383', '1', '34', '-10', '3.14', '0.04', '-0.2'],
+        "bads" => ['+0.380', '34.', '34,', '-010', '+0', '-0', '3.0'],
+        "statement" => 'Un nombre potentiellement signé et pouvant avoir 1 à 3 chiffres après la virgule à condition que le dernier chiffre ne soit pas un zéro.'
     ]
 ];
 
@@ -152,7 +170,7 @@ function printExercises($exercises){
 }
 
 function printExercise($regex, $goods, $bads, $statement, $nb = 0){
-    echo "<h2>$nb :</h2>";
+    echo "<h2 class=\"number\">$nb</h2>";
     echo "<p>$statement</p>";
     echo "<p class=\"alert alert-info\">REGEX : $regex</p>";
     echo "<p>Taille : " . strlen($regex) . " caractères</p>";
@@ -195,13 +213,22 @@ function printResult($regex, $subjects, $flag = 1){
         border-radius: 2px;
         margin: 1rem;
         padding: 1em;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     }
     body{
         background-color: #f9f9f9;
     }
-    h2{
+    .number{
         font-size: 1.8em;
+        border: 1px solid grey;
+        display: inline-block;
+        width: 1.2em;
+        height: 1.2em;
+        text-align: center;
+        border-radius: 1.2em;
+        background-color: white;
+    }
+    .number, .card{
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     }
     </style>
 </head>
