@@ -6,6 +6,90 @@ $exercises = [
         "goods" => ['abstrait', 'abcd', 'baba'],
         "bads" => ['ba', 'azertyu', 'baaaaaaub'],
         "statement" => ''
+    ],
+    [
+        "regex" => "/^ab/",
+        "goods" => ['abstrait', 'abcd', 'ab'],
+        "bads" => ['baba', 'skdjfkdjshfab', 'baaaa', 'aaaaaaaaaab'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/^ab$/",
+        "goods" => ['ab'],
+        "bads" => ['abc', 'ac', 'aaaaabbbbbcccc', 'cba'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/t.t./",
+        "goods" => ['', 'taratata', 'titi', 'toto', 'tata', 'tututututu', 'trtr', 'tttt'],
+        "bads" => ['toutou', 'azerty', 'tt', 'tit'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/t[aeiou]t[aeiou]/",
+        "goods" => ['tatie', 'tutu', 'tetu', 'toto', 'tatatata', 'tatitato'],
+        "bads" => ['tonton', 'toutou', 'tztz', 'ta'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/ch(at|ien)/",
+        "goods" => ['chat', 'chien', 'chaton', 'Oh quel beau chaton'],
+        "bads" => ['chou', 'cheval'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/t[aeiouy]{2}/",
+        "goods" => ['toujours', 'toutou', 'toit', 'batou', 'azertyu'],
+        "bads" => ['toto', 'tartine'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/(t[aeiouy]){2}/",
+        "goods" => ['toto', 'taratata'],
+        "bads" => ['toutou', 'toit', 'batou', 'azertyu', 'tartine', 'toujours'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/^[1-5]{2,4}$/",
+        "goods" => ['11', '1234', '5555'],
+        "bads" => ['110', '91', '11111', '007', '5'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/^(tou?){2}$/",
+        "goods" => ['toto', 'totou', 'toutou', 'touto'],
+        "bads" => ['tutu', 'toutoutou', 'totu'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/^1[0-7]+0$/",
+        "goods" => ['100', '112345670', '160', '11111111111110'],
+        "bads" => ['10', '191', '211110'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/^1[0-7]*0$/",
+        "goods" => ['100','10', '112345670', '160', '11111111111110'],
+        "bads" => ['191', '211110'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/^1[0-7]?0$/",
+        "goods" => ['100','10', '160'],
+        "bads" => ['191', '211110', '11111111111110', '112345670'],
+        "statement" => ''
+    ],
+    [
+        "regex" => "/^\.od[stp]$/",
+        "goods" => ['.ods', '.odt', '.odp'],
+        "bads" => ['.odst', 'ods ', 'odt', '.exe', '', 'aodt'],
+        "statement" => 'Vérifier qu\'une extension est une extension LibreOffice (.odt, .odp, .ods).'
+    ],
+    [
+        "regex" => "//",
+        "goods" => ['toto', '@', '123456', ' '],
+        "bads" => ['', 'azertyuiop'],
+        "statement" => 'Une chaîne non vide de moins de 10 caractères.'
     ]
 ];
 
