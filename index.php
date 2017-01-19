@@ -5,7 +5,13 @@ $regex = "/ab/";
 $goodSujects = ['abstrait', 'abcd', 'baba'];
 $badSubjects = ['ba', 'azertyu', 'baaaaaaub'];
 
-function printResult($regex, $subjects){
+function printResult($regex, $subjects, $flag = 1){
+    echo "<h3>" . ($flag ? "Bons" : "Mauvais") . " cas :</h3>";
+    echo "<table>";
+    echo "<tr>";
+    echo "<th>Chaîne de caractère</th>";
+    echo "<th>Résultat</th>";
+    echo "</tr>";
     foreach($subjects as $subject){
         $result = preg_match($regex, $subject);
         echo "<tr>";
@@ -15,6 +21,7 @@ function printResult($regex, $subjects){
         echo "</td>";
         echo "</tr>";
     }
+    echo "</table>";
 }
 
 ?>
@@ -35,23 +42,8 @@ function printResult($regex, $subjects){
 <body>
     <h1>REGEX : <?= $regex ?></h1>
     <h2>Taille : <?= strlen($regex) ?> caractères</h2>
-    <h3>Bons cas :</h3>
-    <table>
-        <tr>
-            <th>Chaîne de caractère</th>
-            <th>Résultat</th>
-        </tr>
-        <?php printResult($regex, $goodSujects) ?>
-    </table>
-
-    <h3>Mauvais cas :</h3>
-    <table>
-        <tr>
-            <th>Chaîne de caractère</th>
-            <th>Résultat</th>
-        </tr>
-        <?php printResult($regex, $badSubjects) ?>
-    </table>
+    <?php printResult($regex, $goodSujects) ?>
+    <?php printResult($regex, $badSubjects, false) ?>
     
 </h1>
 </body>
